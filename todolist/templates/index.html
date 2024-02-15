@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    <h1 class="titulo text-center">Registro</h1>
+
+  <div class="container alerta text-center mt-5">
+    {% if message1 %}
+    <div class="alert alert-danger" role="alert">
+        {{message1}}
+    </div>
+    {%elif message2 %}
+    <div class="alert alert-warning text-center" role="alert">
+        {{message2}}
+    </div>
+    {%elif message3 %}
+    <div class="alert alert-success text-center" role="alert">
+        {{message3}}
+
+{% endif %}
+
+  </div>
+
+    <div class="form w-50 mx-auto mt-5">
+        <form method="POST" action="{% url 'registro' %}">
+            {% csrf_token %}
+            <div class="form form-group my-3 ">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input class="form-control" type="text" name="username" id="username">
+            </div>
+            <div class="form form-group my-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input class="form-control" type="password" name="password" id="password">
+            </div>
+            <div class="form form-group my-3">
+                <label for="password2" class="form-label">Repite la contraseña</label>
+                <input class="form-control" type="password" name="password2" id="password2">
+            </div>
+            <input class="btn btn-primary w-100 my-5" type="submit" value="Registrarse">
+        </form>
+        <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
+        <p><a href="{% url 'home' %}">Volver</a></p>
+
+    </div>
+</div>
+{% endblock %}
